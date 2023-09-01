@@ -97,14 +97,6 @@ const PostCard = ({ post }) => {
       </figure>
 
       <div className="">
-        {/* <div className="flex justify-between p-2">
-            <div className="flex gap-2 items-center">
-                <FaHeart className="text-xl"></FaHeart> {react}
-            </div>
-            <div className="flex gap-2 items-center">
-                <FaCommentDots className="text-xl"></FaCommentDots> 5
-            </div>
-        </div> */}
 
         <div className="flex justify-between p-2">  
             <button className="flex gap-2 items-center">

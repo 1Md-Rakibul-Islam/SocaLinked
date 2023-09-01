@@ -2,9 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const jwt = require('jsonwebtoken');
-const { query } = require('express');
 require('dotenv').config();
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const port = process.env.PORT || 5000;
 const app = express();
 
@@ -108,25 +106,37 @@ async function run() {
             res.send(post);
         })
 
-        // insert a po st in db
+        // insert a post in db
         app.post('/posts', async(req, res) => {
             const post = req.body;
             const result = await postsCollection.insertOne( post );
             res.send(result);
         });
 
+        // insert a like in a post
+        app.patch('/posts/like/:id', async(req, res) => {
+
+            const id = req.params.id;
+            const {userId} = req.body;
+          
+            try {
+              const post = await postsCollection.findById(id);
+              if (post?.likes?.includes(userId)) {
+                await post.updateOne({ $pull: { likes: userId }});
+                res.status(200).json("Post disliked");
+              } else {
+                await post.updateOne({ $push: { likes: userId } });
+                res.status(200).json("Post liked");
+              }
+            } catch (error) {
+              res.status(500).json(error)
+            }
+        });
+
         // insert a comment in db
         app.post('/comments', async(req, res) => {
             const comment = req.body;
             const result = await commentsCollection.insertOne( comment );
-            res.send(result);
-        });
-
-        // insert a user in db
-        app.post('/users', async(req, res) => {
-            const user = req.body;
-            // console.log(user);
-            const result = await userCollection.insertOne( user );
             res.send(result);
         });
 

@@ -83,7 +83,7 @@ const SignUp = () => {
                         // console.log( data?.name, data?.email, imageData.data.url, data?.coverPhoto, data?.address, data?.education );
                         saveUser(data?.name, data?.email, profilePhoto, imageData.data.url, data?.address, data?.education);
                         toast.success('Account created successfully');
-                        navigate(from, { replace: true });
+                        navigate('/');
                       }
                     });
 

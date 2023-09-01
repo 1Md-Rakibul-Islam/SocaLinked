@@ -5,7 +5,7 @@ import NavBar from '../Pages/Shared/NavBar/NavBar';
 
 const Main = () => {
     return (
-        <div className=''>
+        <div className='min-h-screen'>
             <NavBar></NavBar>
             <Outlet></Outlet>
             <Footer></Footer>

@@ -4,7 +4,7 @@ import socialinked from "../../../assets/icons/socialinked-icon.png";
 
 const Footer = () => {
   return (
-    <footer className="footer p-10 bg-base-200 text-base-content">
+    <footer className="footer mt-20 p-10 bg-base-200 text-base-content">
       <div>
         <Link to='/' className="justify-between items-baseline md:flex hidden">
           <img className="w-[120px]" src={socialinked} alt="" />
